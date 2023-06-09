@@ -12,14 +12,10 @@ TotalPinjaman = HargaRumah - NominalDP
 # Menghitung suku bunga tetap dan angsuran bunga tetap berdasarkan lama cicilan
 if 1 <= Konversi <= 60:
     bunga_fix = 0.04
-elif 61 <= Konversi <= 120:
-    bunga_fix = 0.06
-elif 121 <= Konversi <= 180:
-    bunga_fix = 0.08
-elif 181 <= Konversi <= 240:
-    bunga_fix = 0.12
+    bunga_floating = 0
 else:
     bunga_fix = 0.13
+    bunga_floating = 0.10
 
 # Menghitung angsuran pokok
 angsuran_pokok = TotalPinjaman / Konversi
@@ -29,11 +25,6 @@ angsuran_bunga_fix_perbulan = TotalPinjaman * bunga_fix / 12
 
 # Menghitung angsuran per bulan menggunakan bunga fix
 angsuran_per_bulan_menggunakan_bunga_fix = angsuran_pokok + angsuran_bunga_fix_perbulan
-
-if Konversi > 60:
-    bunga_floating = 0.10
-else:
-    bunga_floating = 0
 
 SisaBulan = Konversi - 60
 totalKPR5Tahun = angsuran_per_bulan_menggunakan_bunga_fix * 60
@@ -74,5 +65,5 @@ if Konversi > 60:
     print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Floating\t\tAngsuran Per Bulan Menggunakan Bunga Floating")
     print("-----------------------------------------------------------------------")
     for bulan in range(61, Konversi + 1):
-        print(f"{bulan}\t\t{angsuran_pokok:.2f}\t\t\t{angsuran_bunga_floating_perbulan:.2f}\t\t\t\t{angsuran_per_bulan_menggunakan_bunga_floating:.2f}")
+        print(f"{bulan}\t\t{angsuran_pokok:.2f}\t\t{angsuran_bunga_floating_perbulan:.2f}\t\t\t\t{angsuran_per_bulan_menggunakan_bunga_floating:.2f}")
     print("-----------------------------------------------------------------------")
