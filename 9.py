@@ -35,7 +35,7 @@ TotalBunga = (bunga_fix * 60) + (bunga_floating * SisaBulan)
 # Breakdown Angsuran Bunga per Bulan 
 bungafix = TotalBungaFix / Konversi
 bungafloating = TotalBungaFloating / Konversi 
-TotalBungaperBulan = TotalBunga / Konversi
+TotalBungaperBulan = bungafix + bungafloating
 
 # Breakdown Angsuran Pokok
 AngsuranPokokperBulan = MaksimalTotalAngsuranperBulan - TotalBungaperBulan
@@ -61,20 +61,14 @@ print("Maka saran harga rumah yang dapat diambil untuk KPR sebesar Rp", SaranHar
 print("===================================================================")
 print("===================================================================")
 
+
 # Menampilkan tabel angsuran setiap bulan
 print("-----------------------------------------------------------------------")
 print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\tTotal Bunga per Bulan\t\t\t\tTotal Angsuran per Bulan")
 print("-----------------------------------------------------------------------")
 for bulan in range(1, Konversi + 1):
     if bulan <= 60:
+        print(f"{bulan}\t\t{AngsuranPokokperBulan:.2f}\t\t{bungafix:.2f}\t\t0.00\t\t\t{bungafix:.2f}\t\t\t\t{MaksimalTotalAngsuranperBulan:.2f}")
+    else:
         print(f"{bulan}\t\t{AngsuranPokokperBulan:.2f}\t\t{bungafix:.2f}\t\t{bungafloating:.2f}\t\t{TotalBungaperBulan:.2f}\t\t\t\t{MaksimalTotalAngsuranperBulan:.2f}")
-print("-----------------------------------------------------------------------")
-
-# Menampilkan tabel angsuran setiap bulan dengan bunga floating
-if Konversi > 60:
-    print("-----------------------------------------------------------------------")
-    print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\tTotal Bunga per Bulan\t\t\t\tTotal Angsuran per Bulan")
-    print("-----------------------------------------------------------------------")
-    for bulan in range(61, Konversi + 1):
-        print(f"{bulan}\t\t{AngsuranPokokperBulan:.2f}\t\t{bungafix:.2f}\t\t{bungafloating:.2f}\t\t{TotalBungaperBulan:.2f}\t\t\t\t{MaksimalTotalAngsuranperBulan:.2f}")
-    print("-----------------------------------------------------------------------")
+  
