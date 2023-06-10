@@ -3,6 +3,31 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
+# Data pengguna yang telah terdaftar
+registered_users = {
+    "user1": "password1",
+    "user2": "password2",
+    "user3": "password3"
+}
+
+# Variabel untuk menyimpan data pengguna yang berhasil log in
+logged_in_user = None
+
+# Fungsi untuk memeriksa keberadaan pengguna dalam data pengguna yang terdaftar
+def is_registered(username):
+    return username in registered_users
+
+# Fungsi untuk memeriksa kecocokan username dan password pada data pengguna yang terdaftar
+def is_valid_credentials(username, password):
+    if is_registered(username):
+        return registered_users[username] == password
+    return False
+
+# Fungsi untuk mengatur pengguna yang berhasil log in
+def set_logged_in_user(username):
+    global logged_in_user
+    logged_in_user = username
+
 # Fungsi untuk menghitung dan menyimpan hasil KPR dalam format CSV
 def hitung_dan_simpan():
     try:
@@ -63,9 +88,8 @@ def hitung_dan_simpan():
         window_table.title("Hasil KPR")
 
         # Menambahkan keterangan di atas tabel
-        keterangan_label = Label(window_table, text="Total KPR: Rp%.2f   |   Gaji yang Dibutuhkan: Rp%.2f   |   Total Cicilan Pokok: Rp%.2f   |   Total Bunga: Rp%.2f"
-                                               % (total_KPR, minimal_gaji, totalKPR5Tahun, total_KPR - TotalPinjaman))
-        keterangan_label.pack(padx=10, pady=10)
+        keterangan_label = Label(window_table, text=f"Total KPR: Rp{total_KPR:.2f}   |   Gaji yang Dibutuhkan: Rp{minimal_gaji:.2f}   |   Total Cicilan Pokok: Rp{totalKPR5Tahun:.2f}   |   Total Bunga: Rp{total_KPR - TotalPinjaman:.2f}")
+        keterangan_label.pack(padx=10, pady=10) 
 
         # Membuat Treeview
         table = ttk.Treeview(window_table)
@@ -86,6 +110,67 @@ def hitung_dan_simpan():
 
     except ValueError:
         messagebox.showerror("Error", "Mohon masukkan angka yang valid")
+
+# Fungsi untuk menampilkan jendela log in
+def show_login_window():
+    login_window = Toplevel()
+    login_window.title("Log In")
+
+    label_username = Label(login_window, text="Username: ")
+    entry_username = Entry(login_window)
+    label_username.pack()
+    entry_username.pack()
+
+    label_password = Label(login_window, text="Password: ")
+    entry_password = Entry(login_window, show="*")
+    label_password.pack()
+    entry_password.pack()
+
+    button_login = Button(login_window, text="Log In", command=lambda: login(entry_username.get(), entry_password.get(), login_window))
+    button_login.pack()
+
+# Fungsi untuk menampilkan jendela sign up
+def show_signup_window():
+    signup_window = Toplevel()
+    signup_window.title("Sign Up")
+
+    label_username = Label(signup_window, text="Username: ")
+    entry_username = Entry(signup_window)
+    label_username.pack()
+    entry_username.pack()
+
+    label_password = Label(signup_window, text="Password: ")
+    entry_password = Entry(signup_window, show="*")
+    label_password.pack()
+    entry_password.pack()
+
+    button_signup = Button(signup_window, text="Sign Up", command=lambda: signup(entry_username.get(), entry_password.get(), signup_window))
+    button_signup.pack()
+
+# Fungsi untuk melakukan log in
+def login(username, password, login_window):
+    if is_valid_credentials(username, password):
+        set_logged_in_user(username)
+        login_window.destroy()
+        messagebox.showinfo("Success", "Log in successful!")
+    else:
+        messagebox.showerror("Error", "Invalid username or password")
+
+# Fungsi untuk melakukan sign up
+def signup(username, password, signup_window):
+    if is_registered(username):
+        messagebox.showerror("Error", "Username already exists")
+    else:
+        registered_users[username] = password
+        messagebox.showinfo("Success", "Sign up successful!")
+        signup_window.destroy()
+
+# Fungsi untuk memeriksa log in dan menghitung KPR
+def check_login_and_calculate():
+    if logged_in_user:
+        hitung_dan_simpan()
+    else:
+        messagebox.showerror("Error", "Please log in first")
 
 # Membuat jendela GUI
 window = Tk()
@@ -109,7 +194,13 @@ label_lama_cicilan = Label(window, text="Lama Cicilan (tahun): ")
 entry_lama_cicilan = Entry(window)
 
 # Tombol untuk menghitung dan menyimpan hasil KPR
-button_hitung = Button(window, text="Hitung KPR", command=hitung_dan_simpan)
+button_hitung = Button(window, text="Hitung KPR", command=check_login_and_calculate)
+
+# Tombol untuk log in
+button_login = Button(window, text="Log In", command=show_login_window)
+
+# Tombol untuk sign up
+button_signup = Button(window, text="Sign Up", command=show_signup_window)
 
 # Menempatkan elemen-elemen GUI ke dalam grid
 label_harga_rumah.grid(row=1, column=0, padx=10, pady=5, sticky=W)
@@ -119,6 +210,8 @@ entry_persen_DP.grid(row=2, column=1, padx=10, pady=5, sticky=E)
 label_lama_cicilan.grid(row=3, column=0, padx=10, pady=5, sticky=W)
 entry_lama_cicilan.grid(row=3, column=1, padx=10, pady=5, sticky=E)
 button_hitung.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
+button_login.grid(row=5, column=0, padx=10, pady=5)
+button_signup.grid(row=5, column=1, padx=10, pady=5)
 
 # Menampilkan jendela GUI
 window.mainloop()
