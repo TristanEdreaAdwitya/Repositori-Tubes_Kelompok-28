@@ -33,14 +33,14 @@ if menu == "A":
 
         def BungaFloating (Konversi):
             return 0.10
-
+        KPRbagiTahun = KPR / SisaKerja
         AngsuranPokok = KPR / Konversi
 
         Bunga_Fix = BungaFix (Konversi)
-        AngsuranBungaFix = KPR * Bunga_Fix / 12
+        AngsuranBungaFix = (KPRbagiTahun * Bunga_Fix) / 12
 
         Bunga_Floating = BungaFloating (Konversi)
-        AngsuranBungaFloating = KPR * Bunga_Floating / 12
+        AngsuranBungaFloating = (KPRbagiTahun * Bunga_Floating) / 12
 
         TotalAngsuranPokok = AngsuranPokok * Konversi
         TotalAngsuranBungaFix = AngsuranBungaFix * 60 if Konversi > 60 else AngsuranBungaFix * Konversi
@@ -120,12 +120,13 @@ if menu == "A":
             return 0.10
 
         AngsuranPokok = KPR / Konversi
+        KPRbagiTahun = KPR / Tenor
 
         Bunga_Fix = BungaFix (Konversi)
-        AngsuranBungaFix = KPR * Bunga_Fix / 12
+        AngsuranBungaFix = (KPRbagitahun * Bunga_Fix) / 12
 
         Bunga_Floating = BungaFloating (Konversi)
-        AngsuranBungaFloating = KPR * Bunga_Floating / 12
+        AngsuranBungaFloating = (KPRbagitahun) * Bunga_Floating / 12
 
         TotalAngsuranPokok = AngsuranPokok * Konversi
         TotalAngsuranBungaFix = AngsuranBungaFix * 60 if Konversi > 60 else AngsuranBungaFix * Konversi
