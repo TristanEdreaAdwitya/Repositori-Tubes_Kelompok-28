@@ -172,10 +172,10 @@ elif menu == "B":
         AngsuranPokok = MaksAngsuran * 0.7 
 
         Bunga_Fix = BungaFix (Konversi)
-        AngsuranBungaFix = MaksAngsuran * Bunga_Fix
+        AngsuranBungaFix = MaksAngsuran * Bunga_Fix/12
 
         Bunga_Floating = BungaFloating (Konversi)
-        AngsuranBungaFloating = MaksAngsuran * Bunga_Floating
+        AngsuranBungaFloating = MaksAngsuran * Bunga_Floating/12
 
         TotalAngsuranPokok = AngsuranPokok * Konversi
         TotalAngsuranBungaFix = AngsuranBungaFix * 60 if Konversi > 60 else AngsuranBungaFix * Konversi
