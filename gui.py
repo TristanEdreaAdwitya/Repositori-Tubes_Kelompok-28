@@ -2,6 +2,8 @@ import csv
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+import matplotlib.pyplot as plt
+
 
 # Data pengguna yang telah terdaftar
 registered_users = {
@@ -34,79 +36,217 @@ def hitung_dan_simpan():
         HargaRumah = int(entry_harga_rumah.get())
         PersenDP = int(entry_persen_DP.get())
         LamaCicilan = int(entry_lama_cicilan.get())
+        SisaKerja = int(entry_Sisa_Kerja.get())
 
-        NominalDP = PersenDP * HargaRumah / 100
-        Konversi = LamaCicilan * 12
-        TotalPinjaman = HargaRumah - NominalDP
+        if SisaKerja < LamaCicilan :
+            messagebox.showinfo("informasi", "Anda tidak disarankan untuk mengambil tenor dengan jangka waktu tersebut. Kami sarankan untuk mengambil tenor dengan jangka waktu di bawah atau setara dengan sisa kerja anda")
 
-        if 1 <= Konversi <= 60:
-            bunga_fix = 0.04
-        elif 61 <= Konversi <= 120:
-            bunga_fix = 0.06
-        elif 121 <= Konversi <= 180:
-            bunga_fix = 0.08
-        elif 181 <= Konversi <= 240:
-            bunga_fix = 0.12
-        else:
-            bunga_fix = 0.13
+            NominalDP = PersenDP * HargaRumah / 100
+            Konversi = SisaKerja * 12
+            KPR = HargaRumah - NominalDP
+            SisaBulan = Konversi - 60
 
-        angsuran_pokok = TotalPinjaman / Konversi
-        angsuran_bunga_fix_perbulan = TotalPinjaman * bunga_fix / 12
-        angsuran_per_bulan_menggunakan_bunga_fix = angsuran_pokok + angsuran_bunga_fix_perbulan
+            def BungaFix(Konversi) :
+                if 1 <= Konversi <= 60:
+                    return 0.04
+                elif 61 <= Konversi <= 120:
+                    return 0.06
+                elif 121 <= Konversi <= 180:
+                    return 0.08
+                elif 181 <= Konversi <= 240:
+                    return 0.10
+                else:
+                    return 0.13
+            def BungaFloating (Konversi):
+                return 0.10
+        
 
-        if Konversi > 60:
-            bunga_floating = 0.10
-        else:
-            bunga_floating = 0
+            angsuran_pokok = KPR / Konversi
+            KPRbagitahun = KPR / SisaKerja
 
-        SisaBulan = Konversi - 60
-        totalKPR5Tahun = angsuran_per_bulan_menggunakan_bunga_fix * 60
-        angsuran_bunga_floating_perbulan = TotalPinjaman * bunga_floating / 12
-        angsuran_per_bulan_menggunakan_bunga_floating = (TotalPinjaman - totalKPR5Tahun) / SisaBulan + angsuran_bunga_floating_perbulan
+            Bunga_Fix = BungaFix (Konversi)
+            AngsuranBungaFix = (KPRbagitahun * Bunga_Fix) / 12
 
-        total_KPR = (angsuran_per_bulan_menggunakan_bunga_fix + angsuran_per_bulan_menggunakan_bunga_floating) * Konversi
-        minimal_gaji = total_KPR / (Konversi * 0.3)
+            Bunga_Floating = BungaFloating (Konversi)
+            AngsuranBungaFloating = (KPRbagitahun * Bunga_Floating) / 12
 
-        # Menyimpan hasil KPR dalam file CSV
-        with open('hasil_kpr.csv', 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Bulan", "Angsuran Pokok", "Angsuran Bunga Fix", "Angsuran Per Bulan Menggunakan Bunga Fix"])
-            for bulan in range(1, Konversi + 1):
-                writer.writerow(
-                    [bulan, round(angsuran_pokok, 2), round(angsuran_bunga_fix_perbulan, 2),
-                     round(angsuran_per_bulan_menggunakan_bunga_fix, 2)])
+            TotalAngsuranPokok = angsuran_pokok * Konversi
+            TotalAngsuranBungaFix = AngsuranBungaFix * 60 if Konversi > 60 else AngsuranBungaFix * Konversi
+            TotalAngsuranBungaFloating = AngsuranBungaFloating * SisaBulan if Konversi > 60 else 0
+            TotalAngsuranBunga = TotalAngsuranBungaFix + TotalAngsuranBungaFloating
 
-        messagebox.showinfo("Info", "Hasil KPR telah disimpan dalam file hasil_kpr.csv")
+            AngsuranperBulan5Tahun = angsuran_pokok + AngsuranBungaFix
+            AngsuranperBulanSisaBulan = angsuran_pokok + AngsuranBungaFloating
 
-        # Membaca file CSV dan menampilkan hasil KPR dalam tabel (Treeview)
-        with open('hasil_kpr.csv', 'r') as file:
-            reader = csv.reader(file)
-            data = list(reader)
+            TotalKPR = TotalAngsuranPokok + TotalAngsuranBunga
+            MinimalGaji = TotalKPR / (Konversi * 0.3)
 
-        # Membuat jendela Tabel
-        window_table = Toplevel()
-        window_table.title("Hasil KPR")
+            # Data untuk diagram garis
+            bulan = list(range(1, Konversi + 1))  # Progres bulan
+            y = []
+            for i in range(1, Konversi + 1):
+                if i <= 60:
+                    y.append(AngsuranperBulan5Tahun)
+                else:
+                    y.append(AngsuranperBulanSisaBulan)
 
-        # Menambahkan keterangan di atas tabel
-        keterangan_label = Label(window_table, text=f"Total KPR: Rp{total_KPR:.2f}   |   Gaji yang Dibutuhkan: Rp{minimal_gaji:.2f}   |   Total Cicilan Pokok: Rp{totalKPR5Tahun:.2f}   |   Total Bunga: Rp{total_KPR - TotalPinjaman:.2f}")
-        keterangan_label.pack(padx=10, pady=10) 
+            # Membuat diagram garis
+            plt.plot(bulan, y, marker='o', linestyle='-', color='b')
 
-        # Membuat Treeview
-        table = ttk.Treeview(window_table)
-        table['columns'] = data[0]
-        table.heading("#0", text='No.')
-        table.column("#0", width=50, stretch=NO)
+            # Menampilkan judul dan label sumbu
+            plt.title('Progres Bulan vs Total Angsuran per Bulan')
+            plt.xlabel('Bulan')
+            plt.ylabel('Total Angsuran per Bulan')
 
-        for col in data[0]:
-            table.heading(col, text=col)
-            table.column(col, width=150, stretch=YES)
+            # Menampilkan diagram garis
+            plt.show()
+            
 
-        # Menambahkan data ke dalam Treeview
-        for i, row in enumerate(data[1:], start=1):
-            table.insert(parent='', index='end', iid=i, text=str(i), values=row)
 
-        # Menempatkan Treeview ke dalam jendela Tabel
-        table.pack(fill=BOTH, expand=YES)
+
+            # Menyimpan hasil KPR dalam file CSV
+            with open('hasil_kpr.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(["Bulan", "Angsuran Pokok", "Angsuran Bunga Fix", "Angsuran Per Bulan Menggunakan Bunga Fix"])
+                for bulan in range(1, Konversi + 1):
+                    writer.writerow(
+                        [bulan, round(angsuran_pokok, 2), round(AngsuranBungaFix, 2),
+                        round(AngsuranperBulan5Tahun, 2)])
+
+            messagebox.showinfo("Info", "Hasil KPR telah disimpan dalam file hasil_kpr.csv")
+
+            # Membaca file CSV dan menampilkan hasil KPR dalam tabel (Treeview)
+            with open('hasil_kpr.csv', 'r') as file:
+                reader = csv.reader(file)
+                data = list(reader)
+
+            # Membuat jendela Tabel
+            window_table = Toplevel()
+            window_table.title("Hasil KPR")
+
+            # Menambahkan keterangan di atas tabel
+            keterangan_label = Label(window_table, text=f"Total KPR: Rp{TotalKPR:.2f}   |   Gaji yang Dibutuhkan: Rp{MinimalGaji:.2f}   |   Total Cicilan Pokok: Rp{TotalAngsuranPokok:.2f}   |   Total Bunga: Rp{TotalAngsuranBunga:.2f}")
+            keterangan_label.pack(padx=10, pady=10) 
+
+            # Membuat Treeview
+            table = ttk.Treeview(window_table)
+            table['columns'] = data[0]
+            table.heading("#0", text='No.')
+            table.column("#0", width=50, stretch=NO)
+
+            for col in data[0]:
+                table.heading(col, text=col)
+                table.column(col, width=150, stretch=YES)
+
+            # Menambahkan data ke dalam Treeview
+            for i, row in enumerate(data[1:], start=1):
+                table.insert(parent='', index='end', iid=i, text=str(i), values=row)
+
+            # Menempatkan Treeview ke dalam jendela Tabel
+            table.pack(fill=BOTH, expand=YES)
+        else :
+            NominalDP = PersenDP * HargaRumah / 100
+            Konversi = LamaCicilan * 12
+            KPR = HargaRumah - NominalDP
+            SisaBulan = Konversi - 60
+
+            def BungaFix(Konversi) :
+                if 1 <= Konversi <= 60:
+                    return 0.04
+                elif 61 <= Konversi <= 120:
+                    return 0.06
+                elif 121 <= Konversi <= 180:
+                    return 0.08
+                elif 181 <= Konversi <= 240:
+                    return 0.10
+                else:
+                    return 0.13
+            def BungaFloating (Konversi):
+                return 0.10
+        
+
+            angsuran_pokok = KPR / Konversi
+            KPRbagitahun = KPR / LamaCicilan
+
+            Bunga_Fix = BungaFix (Konversi)
+            AngsuranBungaFix = (KPRbagitahun * Bunga_Fix) / 12
+
+            Bunga_Floating = BungaFloating (Konversi)
+            AngsuranBungaFloating = (KPRbagitahun * Bunga_Floating) / 12
+
+            TotalAngsuranPokok = angsuran_pokok * Konversi
+            TotalAngsuranBungaFix = AngsuranBungaFix * 60 if Konversi > 60 else AngsuranBungaFix * Konversi
+            TotalAngsuranBungaFloating = AngsuranBungaFloating * SisaBulan if Konversi > 60 else 0
+            TotalAngsuranBunga = TotalAngsuranBungaFix + TotalAngsuranBungaFloating
+
+            AngsuranperBulan5Tahun = angsuran_pokok + AngsuranBungaFix
+            AngsuranperBulanSisaBulan = angsuran_pokok + AngsuranBungaFloating
+
+            TotalKPR = TotalAngsuranPokok + TotalAngsuranBunga
+            MinimalGaji = TotalKPR / (Konversi * 0.3)
+            # Data untuk diagram garis
+            bulan = list(range(1, Konversi + 1))  # Progres bulan
+            y = []
+            for i in range(1, Konversi + 1):
+                if i <= 60:
+                    y.append(AngsuranperBulan5Tahun)
+                else:
+                    y.append(AngsuranperBulanSisaBulan)
+
+            # Membuat diagram garis
+            plt.plot(bulan, y, marker='o', linestyle='-', color='b')
+
+            # Menampilkan judul dan label sumbu
+            plt.title('Progres Bulan vs Total Angsuran per Bulan')
+            plt.xlabel('Bulan')
+            plt.ylabel('Total Angsuran per Bulan')
+
+            # Menampilkan diagram garis
+            plt.show()
+
+
+
+
+            # Menyimpan hasil KPR dalam file CSV
+            with open('hasil_kpr.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(["Bulan", "Angsuran Pokok", "Angsuran Bunga Fix", "Angsuran Per Bulan Menggunakan Bunga Fix"])
+                for bulan in range(1, Konversi + 1):
+                    writer.writerow(
+                        [bulan, round(angsuran_pokok, 2), round(AngsuranBungaFix, 2),
+                        round(AngsuranperBulan5Tahun, 2)])
+
+            messagebox.showinfo("Info", "Hasil KPR telah disimpan dalam file hasil_kpr.csv")
+
+            # Membaca file CSV dan menampilkan hasil KPR dalam tabel (Treeview)
+            with open('hasil_kpr.csv', 'r') as file:
+                reader = csv.reader(file)
+                data = list(reader)
+
+            # Membuat jendela Tabel
+            window_table = Toplevel()
+            window_table.title("Hasil KPR")
+
+            # Menambahkan keterangan di atas tabel
+            keterangan_label = Label(window_table, text=f"Total KPR: Rp{TotalKPR:.2f}   |   Gaji yang Dibutuhkan: Rp{MinimalGaji:.2f}   |   Total Cicilan Pokok: Rp{TotalAngsuranPokok:.2f}   |   Total Bunga: Rp{TotalAngsuranBunga:.2f}")
+            keterangan_label.pack(padx=10, pady=10) 
+
+            # Membuat Treeview
+            table = ttk.Treeview(window_table)
+            table['columns'] = data[0]
+            table.heading("#0", text='No.')
+            table.column("#0", width=50, stretch=NO)
+
+            for col in data[0]:
+                table.heading(col, text=col)
+                table.column(col, width=150, stretch=YES)
+
+            # Menambahkan data ke dalam Treeview
+            for i, row in enumerate(data[1:], start=1):
+                table.insert(parent='', index='end', iid=i, text=str(i), values=row)
+
+            # Menempatkan Treeview ke dalam jendela Tabel
+            table.pack(fill=BOTH, expand=YES)
 
     except ValueError:
         messagebox.showerror("Error", "Mohon masukkan angka yang valid")
@@ -185,6 +325,10 @@ header_label.grid(row=0, column=0, columnspan=2)
 label_harga_rumah = Label(window, text="Harga Rumah: ")
 entry_harga_rumah = Entry(window)
 
+# Label dan entry untuk input sisa kerja
+label_Sisa_Kerja = Label(window, text="Sisa Waktu Kerja:")
+entry_Sisa_Kerja = Entry(window)
+
 # Label dan Entry untuk input persentase DP
 label_persen_DP = Label(window, text="%DP: ")
 entry_persen_DP = Entry(window)
@@ -209,9 +353,11 @@ label_persen_DP.grid(row=2, column=0, padx=10, pady=5, sticky=W)
 entry_persen_DP.grid(row=2, column=1, padx=10, pady=5, sticky=E)
 label_lama_cicilan.grid(row=3, column=0, padx=10, pady=5, sticky=W)
 entry_lama_cicilan.grid(row=3, column=1, padx=10, pady=5, sticky=E)
-button_hitung.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
-button_login.grid(row=5, column=0, padx=10, pady=5)
-button_signup.grid(row=5, column=1, padx=10, pady=5)
+label_Sisa_Kerja.grid(row=4, column=0, padx=10, pady=5, sticky=W)
+entry_Sisa_Kerja.grid(row=4, column=1, padx=10, pady=5, sticky=E)
+button_hitung.grid(row=5, column=0, columnspan=2, padx=10, pady=10)
+button_login.grid(row=6, column=0, padx=10, pady=5)
+button_signup.grid(row=6, column=1, padx=10, pady=5)
 
 # Menampilkan jendela GUI
 window.mainloop()
