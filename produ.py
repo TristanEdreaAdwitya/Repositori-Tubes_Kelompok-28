@@ -6,6 +6,7 @@ def login():
 
     if check_credentials(username, password):
         print("Login berhasil!")
+        input_harga_rumah()
     else:
         print("Username atau password salah.")
         main()
@@ -39,28 +40,18 @@ def register():
     
     print("Registrasi berhasil!")
 
+def input_harga_rumah():
+    # Kode untuk input harga rumah
+    print("Masukkan harga rumah")
+
 # Main program
 def main():
     print("Selamat datang!")
     choice = input("Apakah Anda ingin login (L) atau register (R)? ").upper()
 
-    if choice.lower() == 'l':
+    if choice == 'L':
         login()
-    elif choice.lower() == 'r':
-        register()
-    else:
-        print("Pilihan tidak valid. Silakan coba lagi.")
-
-main()
-
-# Main program
-def main():
-    print("Selamat datang!")
-    choice = input("Apakah Anda ingin login (L) atau register (R)? ")
-
-    if choice.lower() == 'l':
-        login()
-    elif choice.lower() == 'r':
+    elif choice == 'R':
         register()
     else:
         print("Pilihan tidak valid. Silakan coba lagi.")
