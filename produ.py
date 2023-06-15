@@ -191,10 +191,10 @@ if menu == "A":
         KPRbagiTahun = KPR / Tenor
 
         Bunga_Fix = BungaFix (Konversi)
-        AngsuranBungaFix = (KPRbagitahun * Bunga_Fix) / 12
+        AngsuranBungaFix = (KPRbagiTahun * Bunga_Fix) / 12
 
         Bunga_Floating = BungaFloating (Konversi)
-        AngsuranBungaFloating = (KPRbagitahun) * Bunga_Floating / 12
+        AngsuranBungaFloating = (KPRbagiTahun) * Bunga_Floating / 12
 
         TotalAngsuranPokok = AngsuranPokok * Konversi
         TotalAngsuranBungaFix = AngsuranBungaFix * 60 if Konversi > 60 else AngsuranBungaFix * Konversi
