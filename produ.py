@@ -1,3 +1,71 @@
+import json
+
+def login():
+    username = input("Masukkan username: ")
+    password = input("Masukkan password: ")
+
+    if check_credentials(username, password):
+        print("Login berhasil!")
+    else:
+        print("Username atau password salah.")
+        main()
+
+def check_credentials(username, password):
+    try:
+        with open('data.txt', 'r') as file:
+            data = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+    
+    if username in data and data[username] == password:
+        return True
+    else:
+        return False
+
+def register():
+    username = input("Masukkan username baru: ")
+    password = input("Masukkan password baru: ")
+    
+    try:
+        with open('data.txt', 'r') as file:
+            data = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+    
+    data[username] = password
+    
+    with open('data.txt', 'w') as file:
+        json.dump(data, file)
+    
+    print("Registrasi berhasil!")
+
+# Main program
+def main():
+    print("Selamat datang!")
+    choice = input("Apakah Anda ingin login (L) atau register (R)? ").upper()
+
+    if choice.lower() == 'l':
+        login()
+    elif choice.lower() == 'r':
+        register()
+    else:
+        print("Pilihan tidak valid. Silakan coba lagi.")
+
+main()
+
+# Main program
+def main():
+    print("Selamat datang!")
+    choice = input("Apakah Anda ingin login (L) atau register (R)? ")
+
+    if choice.lower() == 'l':
+        login()
+    elif choice.lower() == 'r':
+        register()
+    else:
+        print("Pilihan tidak valid. Silakan coba lagi.")
+
+main()
 print("----Selamat Datang di Program Simulasi KPR----")
 print("Menu program:")
 print("A = Penentuan KPR berdasarkan harga rumah yang Anda inginkan")
