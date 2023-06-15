@@ -126,7 +126,7 @@ if menu == "A":
         print("===================================================================")
         print("===================================================================")
 
-        # Menampilkan tabel angsuran setiap bulan
+        # Menampilkan Tabel Angsuran Setiap Bulan
         print("-----------------------------------------------------------------------")
         print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\t\t\tTotal Angsuran per Bulan")
         print("-----------------------------------------------------------------------")
@@ -138,7 +138,7 @@ if menu == "A":
 
         import matplotlib.pyplot as plt
 
-        # Data untuk diagram garis
+        # Data untuk Diagram Garis
         bulan = list(range(1, Konversi + 1))  # Progres bulan
         y = []
         for i in range(1, Konversi + 1):
@@ -147,16 +147,17 @@ if menu == "A":
             else:
                 y.append(AngsuranperBulanSisaBulan)
 
-        # Membuat diagram garis
+        # Membuat Diagram Garis
         plt.plot(bulan, y, marker='o', linestyle='-', color='b')
 
-        # Menampilkan judul dan label sumbu
+        # Menampilkan Judul dan Label Sumbu
         plt.title('Progres Bulan vs Total Angsuran per Bulan')
         plt.xlabel('Bulan')
         plt.ylabel('Total Angsuran per Bulan')
 
-        # Menampilkan diagram garis
+        # Menampilkan Diagram Garis
         plt.show()
+
     else :
         DP = PersenDP / 100 * HargaRumah 
         Konversi = Tenor * 12
@@ -213,7 +214,7 @@ if menu == "A":
         print("===================================================================")
         print("===================================================================")
 
-        # Menampilkan tabel angsuran setiap bulan
+        # Menampilkan Tabel Angsuran Setiap Bulan
         print("-----------------------------------------------------------------------")
         print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\t\t\tTotal Angsuran per Bulan")
         print("-----------------------------------------------------------------------")
@@ -225,7 +226,7 @@ if menu == "A":
 
         import matplotlib.pyplot as plt
 
-        # Data untuk diagram garis
+        # Data untuk Diagram Garis
         bulan = list(range(1, Konversi + 1))  # Progres bulan
         y = []
         for i in range(1, Konversi + 1):
@@ -234,15 +235,15 @@ if menu == "A":
             else:
                 y.append(AngsuranperBulanSisaBulan)
 
-        # Membuat diagram garis
+        # Membuat Diagram Garis
         plt.plot(bulan, y, marker='o', linestyle='-', color='b')
 
-        # Menampilkan judul dan label sumbu
+        # Menampilkan Judul dan Label Sumbu
         plt.title('Progres Bulan vs Total Angsuran per Bulan')
         plt.xlabel('Bulan')
         plt.ylabel('Total Angsuran per Bulan')
 
-        # Menampilkan diagram garis
+        # Menampilkan Diagram Garis
         plt.show()
 
 
@@ -314,7 +315,7 @@ elif menu == "B":
         print("===================================================================")
         print("===================================================================")
 
-        # Menampilkan tabel angsuran setiap bulan
+        # Menampilkan Tabel Angsuran Setiap Bulan
         print("-----------------------------------------------------------------------")
         print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\t\t\tTotal Angsuran per Bulan")
         print("-----------------------------------------------------------------------")
@@ -326,7 +327,7 @@ elif menu == "B":
 
         import matplotlib.pyplot as plt
 
-        # Data untuk diagram garis
+        # Data untuk Diagram Garis
         bulan = list(range(1, Konversi + 1))  # Progres bulan
         y = []
         for i in range(1, Konversi + 1):
@@ -335,7 +336,7 @@ elif menu == "B":
             else:
                 y.append(AngsuranperBulanSisaBulan)
 
-        # Membuat diagram garis
+        # Membuat Diagram Garis
         plt.plot(bulan, y, marker='o', linestyle='-', color='b')
 
         # Menampilkan judul dan label sumbu
@@ -343,8 +344,92 @@ elif menu == "B":
         plt.xlabel('Bulan')
         plt.ylabel('Total Angsuran per Bulan')
 
-        # Menampilkan diagram garis
+        # Menampilkan Diagram Garis
         plt.show()
+
+        from PIL import Image
+
+        # Memuat dan Menampilkan Gambar
+        if SaranHargaRumah <= 150000000:
+            TipeA = Image.open("TipeA.jpg")
+            TipeA.show()
+        elif 150000001 <= SaranHargaRumah <= 300000000:
+            TipeB = Image.open("TipeB.jpg")
+            TipeB.show()
+        elif 300000001 <= SaranHargaRumah <= 450000000:
+            TipeC = Image.open("TipeC.jpg")
+            TipeC.show()
+        elif 450000001 <= SaranHargaRumah <= 600000000:
+            TipeD = Image.open("TipeD.jpg")
+            TipeD.show()
+        elif 600000001 <= SaranHargaRumah <= 850000000:
+            TipeE = Image.open("TipeE.jpg")
+            TipeE.show()
+        elif 850000001 <= SaranHargaRumah <= 1300000000:
+            TipeF = Image.open("TipeF.jpg")
+            TipeF.show()
+        elif 1300000001 <= SaranHargaRumah <= 1550000000:
+            TipeG = Image.open("TipeG.jpg")
+            TipeG.show()
+        elif 1550000001 <= SaranHargaRumah <= 1800000000:
+            TipeH = Image.open("TipeH.jpg")
+            TipeH.show()
+        elif 1800000001 <= SaranHargaRumah <= 2050000000:
+            TipeI = Image.open("TipeI.jpg")
+            TipeI.show()
+        elif 2050000001 <= SaranHargaRumah <= 2550000000:
+            TipeJ = Image.open("TipeJ.jpg")
+            TipeJ.show()
+        elif 2550000001 <= SaranHargaRumah <= 3050000000:
+            TipeK = Image.open("TipeK.jpg")
+            TipeK.show()
+        elif 3050000001 <= SaranHargaRumah <= 3550000000:
+            TipeL = Image.open("TipeL.jpg")
+            TipeL.show()
+        elif 3550000001 <= SaranHargaRumah <= 4050000000:
+            TipeM = Image.open("TipeM.jpg")
+            TipeM.show()
+        elif 4050000001 <= SaranHargaRumah <= 4550000000:
+            TipeN = Image.open("TipeN.jpg")
+            TipeN.show()
+        elif 4550000001 <= SaranHargaRumah <= 5050000000:
+            TipeO = Image.open("TipeO.jpg")
+            TipeO.show()
+        elif 5050000001 <= SaranHargaRumah <= 6050000000:
+            TipeP = Image.open("TipeP.jpg")
+            TipeP.show()
+        elif 6050000001 <= SaranHargaRumah <= 7050000000:
+            TipeQ = Image.open("TipeQ.jpg")
+            TipeQ.show()
+        elif 7050000001 <= SaranHargaRumah <= 8050000000:
+            TipeR = Image.open("TipeR.jpg")
+            TipeR.show()
+        elif 8050000001 <= SaranHargaRumah <= 9050000000:
+            TipeS = Image.open("TipeS.jpg")
+            TipeS.show()
+        elif 9050000001 <= SaranHargaRumah <= 10050000000:
+            TipeT = Image.open("TipeT.jpg")
+            TipeT.show()
+        elif 10050000001 <= SaranHargaRumah <= 15050000000:
+            TipeU = Image.open("TipeU.jpg")
+            TipeU.show()
+        elif 15050000001 <= SaranHargaRumah <= 20050000000:
+            TipeV = Image.open("TipeV.jpg")
+            TipeV.show()
+        elif 20050000001 <= SaranHargaRumah <= 25050000000:
+            TipeW = Image.open("TipeW.jpg")
+            TipeW.show()
+        elif 25050000001 <= SaranHargaRumah <= 30050000000:
+            TipeX = Image.open("TipeX.jpg")
+            TipeX.show()
+        elif 30050000001 <= SaranHargaRumah <= 35050000000: 
+            TipeY = Image.open("TipeY.jpg")
+            TipeY.show()
+        elif 35050000001 <= SaranHargaRumah <= 40050000000: 
+            TipeZ = Image.open("TipeZ.jpg")
+            TipeZ.show()
+        else:
+            TipeAA = Image.open("TipeAA.jpg")
     else:
         Konversi = Tenor * 12
         SisaBulan = Konversi - 60
@@ -405,7 +490,7 @@ elif menu == "B":
         print("===================================================================")
         print("===================================================================")
 
-        # Menampilkan tabel angsuran setiap bulan
+        # Menampilkan Tabel Angsuran Setiap Bulan
         print("-----------------------------------------------------------------------")
         print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\t\t\tTotal Angsuran per Bulan")
         print("-----------------------------------------------------------------------")
@@ -417,7 +502,7 @@ elif menu == "B":
 
         import matplotlib.pyplot as plt
 
-        # Data untuk diagram garis
+        # Data untuk Diagram Garis
         bulan = list(range(1, Konversi + 1))  # Progres bulan
         y = []
         for i in range(1, Konversi + 1):
@@ -429,12 +514,101 @@ elif menu == "B":
         # Membuat diagram garis
         plt.plot(bulan, y, marker='o', linestyle='-', color='b')
 
-        # Menampilkan judul dan label sumbu
+        # Menampilkan Judul dan Label Sumbu
         plt.title('Progres Bulan vs Total Angsuran per Bulan')
         plt.xlabel('Bulan')
         plt.ylabel('Total Angsuran per Bulan')
 
-        # Menampilkan diagram garis
+        # Menampilkan Diagram Garis
         plt.show()
+        
+        from PIL import Image
+
+        # Memuat dan Menampilkan Gambar
+        if SaranHargaRumah <= 150000000:
+            TipeA = Image.open('TipeA.jpg')
+
+            # Tampilkan gambar dalam pop-up
+            plt.imshow(TipeA)
+            plt.axis('off')
+            plt.show()
+
+        elif 150000001 <= SaranHargaRumah <= 300000000:
+            TipeB = Image.open("TipeB.jpg")
+            TipeB.show()
+        elif 300000001 <= SaranHargaRumah <= 450000000:
+            TipeC = Image.open("TipeC.jpg")
+            TipeC.show()
+        elif 450000001 <= SaranHargaRumah <= 600000000:
+            TipeD = Image.open("TipeD.jpg")
+            TipeD.show()
+        elif 600000001 <= SaranHargaRumah <= 850000000:
+            TipeE = Image.open("TipeE.jpg")
+            TipeE.show()
+        elif 850000001 <= SaranHargaRumah <= 1300000000:
+            TipeF = Image.open("TipeF.jpg")
+            TipeF.show()
+        elif 1300000001 <= SaranHargaRumah <= 1550000000:
+            TipeG = Image.open("TipeG.jpg")
+            TipeG.show()
+        elif 1550000001 <= SaranHargaRumah <= 1800000000:
+            TipeH = Image.open("TipeH.jpg")
+            TipeH.show()
+        elif 1800000001 <= SaranHargaRumah <= 2050000000:
+            TipeI = Image.open("TipeI.jpg")
+            TipeI.show()
+        elif 2050000001 <= SaranHargaRumah <= 2550000000:
+            TipeJ = Image.open("TipeJ.jpg")
+            TipeJ.show()
+        elif 2550000001 <= SaranHargaRumah <= 3050000000:
+            TipeK = Image.open("TipeK.jpg")
+            TipeK.show()
+        elif 3050000001 <= SaranHargaRumah <= 3550000000:
+            TipeL = Image.open("TipeL.jpg")
+            TipeL.show()
+        elif 3550000001 <= SaranHargaRumah <= 4050000000:
+            TipeM = Image.open("TipeM.jpg")
+            TipeM.show()
+        elif 4050000001 <= SaranHargaRumah <= 4550000000:
+            TipeN = Image.open("TipeN.jpg")
+            TipeN.show()
+        elif 4550000001 <= SaranHargaRumah <= 5050000000:
+            TipeO = Image.open("TipeO.jpg")
+            TipeO.show()
+        elif 5050000001 <= SaranHargaRumah <= 6050000000:
+            TipeP = Image.open("TipeP.jpg")
+            TipeP.show()
+        elif 6050000001 <= SaranHargaRumah <= 7050000000:
+            TipeQ = Image.open("TipeQ.jpg")
+            TipeQ.show()
+        elif 7050000001 <= SaranHargaRumah <= 8050000000:
+            TipeR = Image.open("TipeR.jpg")
+            TipeR.show()
+        elif 8050000001 <= SaranHargaRumah <= 9050000000:
+            TipeS = Image.open("TipeS.jpg")
+            TipeS.show()
+        elif 9050000001 <= SaranHargaRumah <= 10050000000:
+            TipeT = Image.open("TipeT.jpg")
+            TipeT.show()
+        elif 10050000001 <= SaranHargaRumah <= 15050000000:
+            TipeU = Image.open("TipeU.jpg")
+            TipeU.show()
+        elif 15050000001 <= SaranHargaRumah <= 20050000000:
+            TipeV = Image.open("TipeV.jpg")
+            TipeV.show()
+        elif 20050000001 <= SaranHargaRumah <= 25050000000:
+            TipeW = Image.open("TipeW.jpg")
+            TipeW.show()
+        elif 25050000001 <= SaranHargaRumah <= 30050000000:
+            TipeX = Image.open("TipeX.jpg")
+            TipeX.show()
+        elif 30050000001 <= SaranHargaRumah <= 35050000000: 
+            TipeY = Image.open("TipeY.jpg")
+            TipeY.show()
+        elif 35050000001 <= SaranHargaRumah <= 40050000000: 
+            TipeZ = Image.open("TipeZ.jpg")
+            TipeZ.show()
+        else:
+            TipeAA = Image.open("TipeAA.jpg")
 else: 
     print("Menu tidak valid. Silakan pilih menu yang sesuai.")
