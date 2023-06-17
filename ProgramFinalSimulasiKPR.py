@@ -134,7 +134,7 @@ while True:
             print(colored("===========================================================================================================","green"))
             print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
             print(colored("===========================================================================================================","green"))
-            print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+            print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
             print(colored("===========================================================================================================","green"))
             print(colored("Sehingga total KPR yang diambil sebesar: ","yellow"),colored( TotalKPR,"green"))
             print(colored("===========================================================================================================","green"))
@@ -226,7 +226,7 @@ while True:
             print(colored("===========================================================================================================","green"))  
             print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
             print(colored("===========================================================================================================","green"))  
-            print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+            print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
             print(colored("===========================================================================================================","green"))  
             print(colored("Sehingga total KPR yang diambil sebesar: ","yellow"),colored( TotalKPR,"green"))
             print(colored("===========================================================================================================","green"))  
@@ -338,7 +338,7 @@ while True:
             print(colored("===========================================================================================================","green"))
             print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
             print(colored("===========================================================================================================","green"))
-            print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+            print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
             print(colored("===========================================================================================================","green"))
             print(colored("===========================================================================================================","green"))
 
@@ -591,7 +591,7 @@ while True:
             print(colored("===========================================================================================================","green"))
             print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
             print(colored("===========================================================================================================","green"))
-            print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+            print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
             print(colored("===========================================================================================================","green"))
 
             # Menampilkan Tabel Angsuran Setiap Bulan
@@ -868,7 +868,7 @@ while mengulang:
                 print(colored("===========================================================================================================","green"))
                 print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
                 print(colored("===========================================================================================================","green"))
-                print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+                print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
                 print(colored("===========================================================================================================","green"))
                 print(colored("Sehingga total KPR yang diambil sebesar: ","yellow"),colored( TotalKPR,"green"))
                 print(colored("===========================================================================================================","green"))
@@ -960,7 +960,7 @@ while mengulang:
                 print(colored("===========================================================================================================","green"))  
                 print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
                 print(colored("===========================================================================================================","green"))  
-                print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+                print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
                 print(colored("===========================================================================================================","green"))  
                 print(colored("Sehingga total KPR yang diambil sebesar: ","yellow"),colored( TotalKPR,"green"))
                 print(colored("===========================================================================================================","green"))  
@@ -1070,7 +1070,7 @@ while mengulang:
                 print(colored("===========================================================================================================","green"))
                 print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
                 print(colored("===========================================================================================================","green"))
-                print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+                print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
                 print(colored("===========================================================================================================","green"))
                 print(colored("===========================================================================================================","green"))
 
@@ -1329,7 +1329,7 @@ while mengulang:
                 print(colored("===========================================================================================================","green"))
                 print(colored("Total Angsuran Bunga Floating yang dibayarkan: ","yellow"),colored( TotalAngsuranBungaFloating,"green"))
                 print(colored("===========================================================================================================","green"))
-                print(colored("Total Angsuran Bunga yang dibayarkan: ""yellow"),colored (TotalAngsuranBunga,"green"))
+                print(colored("Total Angsuran Bunga yang dibayarkan: ","yellow"),colored (TotalAngsuranBunga,"green"))
                 print(colored("===========================================================================================================","green"))
 
                 # Menampilkan Tabel Angsuran Setiap Bulan
