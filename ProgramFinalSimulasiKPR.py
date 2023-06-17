@@ -141,7 +141,6 @@ while True:
             print(colored("Minimal gaji yang direkomdasikan untuk mengambil KPR tersebut sebesar: ","yellow"),colored(MinimalGaji,"green"))
             print(colored("===========================================================================================================","green"))
 
-
             # Menampilkan Tabel Angsuran Setiap Bulan
             print(colored("----------------------------------------------------------------------------------------------------------------------------------------------------------------","yellow"))
             print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\t\t\tTotal Angsuran per Bulan")
@@ -153,9 +152,6 @@ while True:
                 else:
                     print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
                     break
-
-
-
 
             # Data untuk Diagram Garis
             bulan = list(range(1, Konversi + 1))  # Progres bulan
@@ -245,7 +241,6 @@ while True:
                 else:
                     print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
                     
-
             # Data untuk Diagram Garis
             bulan = list(range(1, Konversi + 1))  # Progres bulan
             y = []
@@ -256,7 +251,6 @@ while True:
                 else:
                     y.append(AngsuranperBulanSisaBulan)
                     
-
             # Membuat Diagram Garis
             plt.plot(bulan, y, marker='o', linestyle='-', color='b')
 
@@ -353,6 +347,7 @@ while True:
                 else:
                     print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
                     break
+
             # Data untuk Diagram Garis
             bulan = list(range(1, Konversi + 1))  # Progres bulan
             y = []
@@ -363,14 +358,18 @@ while True:
                 else:
                     y.append(AngsuranperBulanSisaBulan)
                     break
+
             # Membuat Diagram Garis
             plt.plot(bulan, y, marker='o', linestyle='-', color='b')
+
             # Menampilkan judul dan label sumbu
             plt.title('Progres Bulan vs Total Angsuran per Bulan')
             plt.xlabel('Bulan')
             plt.ylabel('Total Angsuran per Bulan')
+
             # Menampilkan Diagram Garis
             plt.show()
+
             # Memuat dan Menampilkan Gambar
             if SaranHargaRumah <= 150000000:
                 image = Image.open('TipeA.jpg')
@@ -535,6 +534,7 @@ while True:
                 plt.axis('off')
                 plt.show()
                 break
+
         else:
             Konversi = Tenor * 12
             SisaBulan = Konversi - 60
@@ -549,8 +549,7 @@ while True:
                 elif 181 <= Konversi <= 240:
                     return 0.10
                 else:
-                    return 0.13
-                
+                    return 0.13  
 
             def BungaFloating (Konversi):
                 return 0.10
@@ -603,8 +602,6 @@ while True:
                     print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t{AngsuranBungaFix:.2f}\t\t\t\t\t0.00\t\t\t\t\t\t{AngsuranperBulan5Tahun:.2f}")
                 else:
                     print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
-
-
 
             # Data untuk Diagram Garis
             bulan = list(range(1, Konversi + 1))  # Progres bulan
@@ -875,7 +872,6 @@ while mengulang:
                 print(colored("Minimal gaji yang direkomdasikan untuk mengambil KPR tersebut sebesar: ","yellow"),colored(MinimalGaji,"green"))
                 print(colored("===========================================================================================================","green"))
 
-
                 # Menampilkan Tabel Angsuran Setiap Bulan
                 print(colored("----------------------------------------------------------------------------------------------------------------------------------------------------------------","yellow"))
                 print("Bulan\t\tAngsuran Pokok\t\tAngsuran Bunga Fix\t\tAngsuran Bunga Floating\t\t\t\tTotal Angsuran per Bulan")
@@ -887,9 +883,6 @@ while mengulang:
                     else:
                         print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
                         break
-
-
-
 
                 # Data untuk Diagram Garis
                 bulan = list(range(1, Konversi + 1))  # Progres bulan
@@ -978,7 +971,6 @@ while mengulang:
                     else:
                         print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
 
-
                 # Data untuk Diagram Garis
                 bulan = list(range(1, Konversi + 1))  # Progres bulan
                 y = []
@@ -998,8 +990,6 @@ while mengulang:
 
                 # Menampilkan Diagram Garis
                 plt.show()
-                
-
 
         elif menu == "B":
             print(colored("===========================================================================================================","green"))
@@ -1085,7 +1075,6 @@ while mengulang:
                     else:
                         print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
                         break
-
 
                 # Data untuk Diagram Garis
                 bulan = list(range(1, Konversi + 1))  # Progres bulan
@@ -1273,6 +1262,7 @@ while mengulang:
                     plt.axis('off')
                     plt.show()
                     break
+
             else:
                 Konversi = Tenor * 12
                 SisaBulan = Konversi - 60
@@ -1287,8 +1277,7 @@ while mengulang:
                     elif 181 <= Konversi <= 240:
                         return 0.10
                     else:
-                        return 0.13
-                    
+                        return 0.13    
 
                 def BungaFloating (Konversi):
                     return 0.10
@@ -1341,7 +1330,6 @@ while mengulang:
                         print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t{AngsuranBungaFix:.2f}\t\t\t\t\t0.00\t\t\t\t\t\t{AngsuranperBulan5Tahun:.2f}")
                     else:
                         print(f"{bulan}\t\t{AngsuranPokok:.2f}\t\t0.00\t\t\t\t\t{AngsuranBungaFloating:.2f}\t\t\t\t\t\t{AngsuranperBulanSisaBulan:.2f}")
-
 
                 # Data untuk Diagram Garis
                 bulan = list(range(1, Konversi + 1))  # Progres bulan
@@ -1526,5 +1514,6 @@ while mengulang:
                     plt.axis('off')
                     plt.show()
                     break
+                
         else: 
             print(colored("Menu tidak valid. Silakan pilih menu yang sesuai.","yellow"))
